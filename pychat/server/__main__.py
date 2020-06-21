@@ -1,10 +1,11 @@
-from pychat.server import ChatServer
 import asyncio
+
+from pychat.server import ChatServer
 
 
 async def main():
     server = ChatServer()
-    print('chat server listening at 127.0.0.1:8888')
+    print('chat server listening')
     await server.start()
 
 

@@ -9,6 +9,10 @@ python = "^3.8"
 orjson = "^3.0.2"
 pydantic = "^1.5.1"
 case-changer = "^0.1.0"
+asyncio-dgram = "^1.0.1"
+tortoise-orm = "^0.16.13"
+aiosqlite = "^0.13.0"
+aioconsole = "^0.2.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

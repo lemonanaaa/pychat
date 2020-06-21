@@ -1,15 +1,14 @@
-from asyncio import StreamWriter
+from ..context import Peer
 from ..proto import Message
 
 
 class Member:
     name: str
-    writer: StreamWriter
+    peer: Peer
 
-    def __init__(self, name: str, writer: StreamWriter):
+    def __init__(self, name: str, peer: Peer):
         self.name = name
-        self.writer = writer
+        self.peer = peer
 
     async def send_message(self, msg: Message):
-        self.writer.write(msg.json().encode(encoding='utf8'))
-        await self.writer.drain()
+        await self.peer.stream.send(msg.json().encode(encoding='utf8'), addr=self.peer.addr)

@@ -1,5 +1,8 @@
-from pychat.client import ChatClient
 import asyncio
+
+from aioconsole import ainput
+
+from pychat.client import ChatClient
 
 
 async def main():
@@ -7,6 +10,10 @@ async def main():
     await client.start()
     await client.create_room('test')
     await client.send_message('test', 'hello')
+
+    while True:
+        msg = await ainput()
+        await client.send_message('test', msg)
 
 
 loop = asyncio.new_event_loop()

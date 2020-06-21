@@ -1,10 +1,29 @@
-from pydantic import BaseModel, ValidationError
-import orjson
 from typing import Optional
+
+import orjson
+from pydantic import BaseModel, ValidationError
 
 
 class Message(BaseModel):
     type: str
+
+
+class SignUp(Message):
+    type = 'signup'
+    signup_name: str
+    signup_password: str
+
+
+class Login(Message):
+    type = 'login'
+    login_name: str
+    login_password: str
+
+
+class LoginResponse(Message):
+    type = 'login_response'
+    success: bool
+    id: Optional[int] = None
 
 
 class JoinRoom(Message):
@@ -29,7 +48,10 @@ class SendMessage(Message):
 _MESSAGE_MAP = {
     'join_room': JoinRoom,
     'create_room': CreateRoom,
-    'send_message': SendMessage
+    'send_message': SendMessage,
+    'login': Login,
+    'signup': SignUp,
+    'login_response': LoginResponse
 }
 
 
